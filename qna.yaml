@@ -1,146 +1,114 @@
-version: 3
-domain: Employee
-created_by: nimco
+version: 2
+task_description: |
+  This skills provides the ability to analyze java method.
+created_by: nimco # Use your GitHub username; only one creator supported
 seed_examples:
   - context: |
-      - title: "Employee Entity Class"
-        description: |
-          Represents an employee entity with id, name, department, and salary.
-        methods:
-          - Long getId()
-          - void setId(Long id)
-          - String getName()
-          - void setName(String name)
-          - String getDepartment()
-          - void setDepartment(String department)
-          - double getSalary()
-          - void setSalary(double salary)
-    questions_and_answers:
-      - question: |
-          What is the purpose of the Employee class?
-        answer: |
-          It represents an employee with id, name, department, and salary.
-      - question: |
-          How is the id generated for Employee?
-        answer: |
-          It is auto-generated using GenerationType.IDENTITY.
-      - question: |
-          What does getDepartment() do?
-        answer: |
-          It returns the employee's department.
-      - question: |
-          How does setSalary(double salary) work?
-        answer: |
-          It sets the salary of the employee.
+      A domain entity is an object within a specific domain that has
+      a distinct identity and encapsulates related data and behaviors.
+      It represents real-world things, processes, or abstractions,
+      such as Customer, Order, or Invoice in an e-commerce domain,
+      and is typically managed by a unique identifier (like an ID).
+      | **Statement**              | **Domain entity**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is a domain entity?
+    answer: |
+      in the context 'user' is Domain Entity.
   - context: |
-      - title: "EmployeeController Class"
-        description: |
-          Handles HTTP requests for employee-related operations.
-        methods:
-          - List<Employee> getAllEmployees()
-          - Optional<Employee> getEmployeeById(Long id)
-          - Employee addEmployee(Employee employee)
-          - void deleteEmployee(Long id)
-    questions_and_answers:
-      - question: |
-          What does getAllEmployees() do?
-        answer: |
-          It returns a list of all employees by calling EmployeeService.
-      - question: |
-          How does getEmployeeById(Long id) work?
-        answer: |
-          It returns an employee by ID using EmployeeService.
-      - question: |
-          What is the purpose of addEmployee()?
-        answer: |
-          It adds a new employee to the database.
-      - question: |
-          How does deleteEmployee(Long id) function?
-        answer: |
-          It deletes an employee by ID using EmployeeService.
+      a domain entity identifier is primitive or primitive wrapper
+      (excluding boolean or Boolean) that can be considered as domain
+      entity id. In the example 'userId' is Domain Entity identifier.
+      | **Statement**              | **Domain entity identifier**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is a domain entity identifier?
+    answer: |
+      in the context 'userId' is Domain Entity identifier.
   - context: |
-      - title: "EmployeeService Class"
-        description: |
-          Provides business logic for employee management.
-        methods:
-          - List<Employee> getAllEmployees()
-          - Optional<Employee> getEmployeeById(Long id)
-          - Employee saveEmployee(Employee employee)
-          - void deleteEmployee(Long id)
-    questions_and_answers:
-      - question: |
-          What does saveEmployee(Employee) do?
-        answer: |
-          It saves a new employee or updates an existing one.
-      - question: |
-          How does getEmployeeById(Long id) work?
-        answer: |
-          It fetches an employee by ID using EmployeeRepository.
-      - question: |
-          What is the role of deleteEmployee(Long id)?
-        answer: |
-          It deletes an employee using the repository.
-      - question: |
-          How does getAllEmployees() function?
-        answer: |
-          It retrieves all employees from the repository.
+      if the method Collection, List, Array .... then ParameterizedType
+      can be considered as the real return type.
+      | **Statement**                 | **real method return type**  |
+      |-------------------------------|--------------------|
+      | List<User> users = getUsers() | user              |
+      | List<User> users = getUsers() | List              |
+    question: |
+      what is the real method return type if the method
+      return Collection, List, Array?
+    answer: |
+      in the context 'User' is the real type.
   - context: |
-      - title: "EmployeeRepository Interface"
-        description: |
-          Provides CRUD operations for Employee entities using JPA.
-        methods:
-          - <S extends Employee> S save(S entity)
-          - Optional<Employee> findById(Long id)
-          - List<Employee> findAll()
-          - void deleteById(Long id)
-    questions_and_answers:
-      - question: |
-          What is the purpose of EmployeeRepository?
-        answer: |
-          It extends JpaRepository to provide CRUD operations.
-      - question: |
-          How does save() work in EmployeeRepository?
-        answer: |
-          It saves or updates an Employee entity.
-      - question: |
-          What does findById(Long id) do?
-        answer: |
-          It retrieves an employee by ID.
-      - question: |
-          How does deleteById(Long id) work?
-        answer: |
-          It deletes an employee by its ID.
+      if a method returns a wrapper then the actual response
+      data is being encapsulated inside the wrapper.
+      in the example ResponseEntity and BaseResponse are
+      wrappers that encapsulate
+      | **Statement**                                        |true return type|
+      |------------------------------------------------------|----------------|
+      | return ResponseEntity.ok(new BaseResponse<>(company))| company        |
+      | return ResponseEntity.ok(new BaseResponse<>(company))| BaseResponse   |
+    question: |
+      what is the real method return type if the method returns a wrapper?
+    answer: |
+      the true return type: company
   - context: |
-      - title: "EmployeeManagementApplication Class"
-        description: |
-          Entry point for starting the Employee Management application.
-        methods:
-          - static void main(String[] args)
-    questions_and_answers:
-      - question: |
-          What does the main() method do?
-        answer: |
-          It starts the Spring Boot application.
-      - question: |
-          How does SpringApplication.run() work?
-        answer: |
-          It launches the application and sets up the context.
-      - question: |
-          Can the application run without EmployeeService?
-        answer: |
-          No, the service is essential for business logic.
-      - question: |
-          What is the significance of SpringBootApplication?
-        answer: |
-          It indicates a configuration class and enables component scanning.
-document_outline: |
-   Information about the Employee application.
-document:
-  repo: https://github.com/softauto/employees
-  commit: 1b04b2fbb43ca0bd4b32ec255d503ee98a62e129
-  patterns:
-    - Employee.md
-    - EmployeeController.md
-    - EmployeeService.md
-    - EmployeeRepository.md
-    - EmployeeManagementApplication.md
+      context refers to the return type and how it relates to
+      a domain entity
+      | **Statement**              | **method context**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is the method context?
+    answer: |
+      in the context 'user' is the context.
+  - context: |
+      the CRUD is (Create, Read, Update, Delete) actions
+      that the api method performs.
+      | **Statement**              | **method context** |
+      |----------------------------|--------------------|
+      | UserDto user = createUser()| Create             |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is the method CRUD?
+    answer: |
+      in the context the CRUD is 'Create'
+  - context: |
+      The associative is a context that refers to the type
+      of the parameter and how it relates to the domain
+      entities in your application. That is different from
+      the return type context.
+      in the example the context is user but the
+      | **Statement**                   | **method associative** |
+      |---------------------------------|-----------------------|
+      | int userId = createCompanyUser()| Company               |
+      | UserDto user = getUser()        | customer              |
+      | int userId = getUserID()        | userId                |
+      | boolean isUse=isUserExist()     | true                  |
+    question: |
+      what is the method associative?
+    answer: |
+      associative is company
+  - context: |
+      a 'virtualCall' is retrieving a domain entity that is
+      not part of the api method parameters and it's not the
+      return type context.
+      public CompanyDecorator getCompany(int companyId) {
+        PolicyDto policyDto = new PolicyService().getPolicy(companyId);
+      }
+    question: |
+      what is the method virtualCall?
+    answer: |
+      in the context policy is
+      the virtual call
