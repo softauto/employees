@@ -1,0 +1,146 @@
+version: 3
+domain: Employee
+created_by: nimco
+seed_examples:
+  - context: |
+      - title: "Employee Entity Class"
+        description: |
+          Represents an employee entity with id, name, department, and salary.
+        methods:
+          - Long getId()
+          - void setId(Long id)
+          - String getName()
+          - void setName(String name)
+          - String getDepartment()
+          - void setDepartment(String department)
+          - double getSalary()
+          - void setSalary(double salary)
+    questions_and_answers:
+      - question: |
+          What is the purpose of the Employee class?
+        answer: |
+          It represents an employee with id, name, department, and salary.
+      - question: |
+          How is the id generated for Employee?
+        answer: |
+          It is auto-generated using GenerationType.IDENTITY.
+      - question: |
+          What does getDepartment() do?
+        answer: |
+          It returns the employee's department.
+      - question: |
+          How does setSalary(double salary) work?
+        answer: |
+          It sets the salary of the employee.
+  - context: |
+      - title: "EmployeeController Class"
+        description: |
+          Handles HTTP requests for employee-related operations.
+        methods:
+          - List<Employee> getAllEmployees()
+          - Optional<Employee> getEmployeeById(Long id)
+          - Employee addEmployee(Employee employee)
+          - void deleteEmployee(Long id)
+    questions_and_answers:
+      - question: |
+          What does getAllEmployees() do?
+        answer: |
+          It returns a list of all employees by calling EmployeeService.
+      - question: |
+          How does getEmployeeById(Long id) work?
+        answer: |
+          It returns an employee by ID using EmployeeService.
+      - question: |
+          What is the purpose of addEmployee()?
+        answer: |
+          It adds a new employee to the database.
+      - question: |
+          How does deleteEmployee(Long id) function?
+        answer: |
+          It deletes an employee by ID using EmployeeService.
+  - context: |
+      - title: "EmployeeService Class"
+        description: |
+          Provides business logic for employee management.
+        methods:
+          - List<Employee> getAllEmployees()
+          - Optional<Employee> getEmployeeById(Long id)
+          - Employee saveEmployee(Employee employee)
+          - void deleteEmployee(Long id)
+    questions_and_answers:
+      - question: |
+          What does saveEmployee(Employee) do?
+        answer: |
+          It saves a new employee or updates an existing one.
+      - question: |
+          How does getEmployeeById(Long id) work?
+        answer: |
+          It fetches an employee by ID using EmployeeRepository.
+      - question: |
+          What is the role of deleteEmployee(Long id)?
+        answer: |
+          It deletes an employee using the repository.
+      - question: |
+          How does getAllEmployees() function?
+        answer: |
+          It retrieves all employees from the repository.
+  - context: |
+      - title: "EmployeeRepository Interface"
+        description: |
+          Provides CRUD operations for Employee entities using JPA.
+        methods:
+          - <S extends Employee> S save(S entity)
+          - Optional<Employee> findById(Long id)
+          - List<Employee> findAll()
+          - void deleteById(Long id)
+    questions_and_answers:
+      - question: |
+          What is the purpose of EmployeeRepository?
+        answer: |
+          It extends JpaRepository to provide CRUD operations.
+      - question: |
+          How does save() work in EmployeeRepository?
+        answer: |
+          It saves or updates an Employee entity.
+      - question: |
+          What does findById(Long id) do?
+        answer: |
+          It retrieves an employee by ID.
+      - question: |
+          How does deleteById(Long id) work?
+        answer: |
+          It deletes an employee by its ID.
+  - context: |
+      - title: "EmployeeManagementApplication Class"
+        description: |
+          Entry point for starting the Employee Management application.
+        methods:
+          - static void main(String[] args)
+    questions_and_answers:
+      - question: |
+          What does the main() method do?
+        answer: |
+          It starts the Spring Boot application.
+      - question: |
+          How does SpringApplication.run() work?
+        answer: |
+          It launches the application and sets up the context.
+      - question: |
+          Can the application run without EmployeeService?
+        answer: |
+          No, the service is essential for business logic.
+      - question: |
+          What is the significance of SpringBootApplication?
+        answer: |
+          It indicates a configuration class and enables component scanning.
+document_outline: |
+   Information about the Employee application.
+document:
+  repo: https://github.com/softauto/employees
+  commit: 1b04b2fbb43ca0bd4b32ec255d503ee98a62e129
+  patterns:
+    - Employee.md
+    - EmployeeController.md
+    - EmployeeService.md
+    - EmployeeRepository.md
+    - EmployeeManagementApplication.md
