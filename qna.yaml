@@ -1,0 +1,114 @@
+version: 2
+task_description: |
+  This skills provides the ability to analyze java method.
+created_by: nimco # Use your GitHub username; only one creator supported
+seed_examples:
+  - context: |
+      A domain entity is an object within a specific domain that has
+      a distinct identity and encapsulates related data and behaviors.
+      It represents real-world things, processes, or abstractions,
+      such as Customer, Order, or Invoice in an e-commerce domain,
+      and is typically managed by a unique identifier (like an ID).
+      | **Statement**              | **Domain entity**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is a domain entity?
+    answer: |
+      in the context 'user' is Domain Entity.
+  - context: |
+      a domain entity identifier is primitive or primitive wrapper
+      (excluding boolean or Boolean) that can be considered as domain
+      entity id. In the example 'userId' is Domain Entity identifier.
+      | **Statement**              | **Domain entity identifier**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is a domain entity identifier?
+    answer: |
+      in the context 'userId' is Domain Entity identifier.
+  - context: |
+      if the method Collection, List, Array .... then ParameterizedType
+      can be considered as the real return type.
+      | **Statement**                 | **real method return type**  |
+      |-------------------------------|--------------------|
+      | List<User> users = getUsers() | user              |
+      | List<User> users = getUsers() | List              |
+    question: |
+      what is the real method return type if the method
+      return Collection, List, Array?
+    answer: |
+      in the context 'User' is the real type.
+  - context: |
+      if a method returns a wrapper then the actual response
+      data is being encapsulated inside the wrapper.
+      in the example ResponseEntity and BaseResponse are
+      wrappers that encapsulate
+      | **Statement**                                        |true return type|
+      |------------------------------------------------------|----------------|
+      | return ResponseEntity.ok(new BaseResponse<>(company))| company        |
+      | return ResponseEntity.ok(new BaseResponse<>(company))| BaseResponse   |
+    question: |
+      what is the real method return type if the method returns a wrapper?
+    answer: |
+      the true return type: company
+  - context: |
+      context refers to the return type and how it relates to
+      a domain entity
+      | **Statement**              | **method context**  |
+      |----------------------------|--------------------|
+      | UserDto user = getUser()   | user               |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is the method context?
+    answer: |
+      in the context 'user' is the context.
+  - context: |
+      the CRUD is (Create, Read, Update, Delete) actions
+      that the api method performs.
+      | **Statement**              | **method context** |
+      |----------------------------|--------------------|
+      | UserDto user = createUser()| Create             |
+      | UserDto user = getUser()   | customer           |
+      | int userId = getUserID()   | userId             |
+      | boolean isUse=isUserExist()| true               |
+    question: |
+      what is the method CRUD?
+    answer: |
+      in the context the CRUD is 'Create'
+  - context: |
+      The associative is a context that refers to the type
+      of the parameter and how it relates to the domain
+      entities in your application. That is different from
+      the return type context.
+      in the example the context is user but the
+      | **Statement**                   | **method associative** |
+      |---------------------------------|-----------------------|
+      | int userId = createCompanyUser()| Company               |
+      | UserDto user = getUser()        | customer              |
+      | int userId = getUserID()        | userId                |
+      | boolean isUse=isUserExist()     | true                  |
+    question: |
+      what is the method associative?
+    answer: |
+      associative is company
+  - context: |
+      a 'virtualCall' is retrieving a domain entity that is
+      not part of the api method parameters and it's not the
+      return type context.
+      public CompanyDecorator getCompany(int companyId) {
+        PolicyDto policyDto = new PolicyService().getPolicy(companyId);
+      }
+    question: |
+      what is the method virtualCall?
+    answer: |
+      in the context policy is
+      the virtual call
