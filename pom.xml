@@ -66,12 +66,18 @@
                         <include>**/*Tests.java</include>
                     </includes>
                     <testFailureIgnore>false</testFailureIgnore>
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value>
+                        </property>
+                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>org.testng</groupId>
-                        <artifactId>testng</artifactId>
-                        <version>7.4.0</version>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-testng</artifactId>
+                        <version>3.0.0-M9</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -79,6 +85,7 @@
     </build>
 
 </project>
+
 
 
 
