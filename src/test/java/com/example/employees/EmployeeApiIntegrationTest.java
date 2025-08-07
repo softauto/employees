@@ -122,7 +122,8 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
         
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         // The controller returns Optional<Employee>, which when empty becomes null in JSON
-        assertNull(response.getBody().getId());
+        Employee responseBody = response.getBody();
+        assertTrue(responseBody == null || responseBody.getId() == null);
     }
 
     @Test
@@ -367,4 +368,5 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
         assertEquals(responseEmployee.getDepartment(), "R&D");
     }
 }
+
 
