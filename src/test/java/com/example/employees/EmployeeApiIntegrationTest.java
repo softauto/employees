@@ -215,7 +215,9 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
     public void testCreateEmployee_PartialData() {
         // Test with missing fields - should still work as Employee constructor handles nulls
         String partialJson = "{\"name\":\"Partial Employee\"}";
-        HttpEntity<String> request = new HttpEntity<>(partialJson);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>(partialJson, headers);
         
         ResponseEntity<Employee> response = restTemplate.exchange(
             baseUrl, HttpMethod.POST, request, Employee.class);
@@ -374,6 +376,7 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
         assertEquals(responseEmployee.getDepartment(), "R&D");
     }
 }
+
 
 
 
