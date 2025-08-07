@@ -201,7 +201,9 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
 
     @Test
     public void testCreateEmployee_InvalidJson() {
-        HttpEntity<String> request = new HttpEntity<>("{invalid json}");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>("{invalid json}", headers);
         
         ResponseEntity<String> response = restTemplate.postForEntity(
             baseUrl, request, String.class);
@@ -372,6 +374,7 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
         assertEquals(responseEmployee.getDepartment(), "R&D");
     }
 }
+
 
 
 
