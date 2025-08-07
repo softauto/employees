@@ -189,8 +189,12 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
 
     @Test
     public void testCreateEmployee_EmptyRequestBody() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>("", headers);
+        
         ResponseEntity<String> response = restTemplate.postForEntity(
-            baseUrl, "", String.class);
+            baseUrl, request, String.class);
         
         assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
     }
@@ -368,5 +372,6 @@ public class EmployeeApiIntegrationTest extends AbstractTestNGSpringContextTests
         assertEquals(responseEmployee.getDepartment(), "R&D");
     }
 }
+
 
 
